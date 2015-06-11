@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<title>User Profile</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Some kind of Website <small>Login</small></h1>
+			<p class="lead">Please log in</p>
+			{% block body %}
+			<form method="post">
+				<h4>User：</h4> <input name="username" value="{{ username }}">
+				<h4>Password：</h4> <input name="password" type="password"><br><br>
+				<button type="submit" class="btn btn-primary">Log in</button>
+			</form>
+			{% endblock %}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<title>User Profile</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Some kind of Website <small>Home</small></h1>
+			<p class="lead">Welcome, {{ username }}</p>
+			{% for message in flash_messages %}
+				<div>{{ message }}</div>
+			{% endfor %}
+			<form class="form-inline" action="/" method="GET">
+				<div class="form-group">
+					<input name="search" type="text" class="form-control" placeholder="Search account...">
+					<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span> Search</button>
+					<a class="btn btn-default btn-sm" href="/" role="button">Reset</a>
+				</div>
+			</form>
+			<h4>Here's your account list: ({{ count[0] }})</h4>
+			<table class="table-bordered table-condensed">
+				<thead>
+					<tr>
+						<th>id</th><th>Account</th><th>User Name</th><th>Age</th><th>Memo</th>
+						<th class="text-center"><span class="glyphicon glyphicon-edit"></span></th>
+						<th class="text-center"><span class="glyphicon glyphicon-remove"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for p in userProfile %}
+					<tr>
+						<td>{{ p.id }}</td>
+						<td>{{ p.account }}</td>
+						<td>{{ p.name }}</td>
+						<td>{{ p.age }}</td>
+						<td>{{ p.memo }}</td>
+						<td><a href="/edit/{{ p.id }}" >Edit</a></td>
+						<td><button type="button" class="btn-link" onClick="confirmDelete('{{ p.id }}')">Delete</button></td>
+						<script>
+							function confirmDelete(id)
+							{
+								if(confirm("Are you sure?"))
+								{
+									location.href = "/delete/"+id;
+								}
+							}
+						</script>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table><br>
+			<a href="/create" class="btn btn-success">Create a new account</a>
+			<a href="/logout" class="btn btn-default">Logout</a>
+		</div>
+	</body>
+</html>
+
